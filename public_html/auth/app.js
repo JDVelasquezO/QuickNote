@@ -4,9 +4,13 @@ btnRegister.addEventListener('click', () => {
     
     var email = document.getElementById('email').value
     var password = document.getElementById('password').value
+    var info = document.getElementById('info')
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(()=>console.log('bien hecho'))
+    .then(() => {
+
+        info.innerHTML = `<br><br>Registrado exitosamente, comienza a chatear`
+    })
     .catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -16,4 +20,23 @@ btnRegister.addEventListener('click', () => {
         // ...
       });
     
+})
+
+var btnLogin = document.getElementById('login')
+btnLogin.addEventListener('click', () => {
+
+    var email2 = document.getElementById('email').value
+    var password2 = document.getElementById('password').value
+
+    firebase.auth().signInWithEmailAndPassword(email2, password2)
+    .then(() => {
+        console.log('lindo');
+        
+    })
+    .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+      });
 })
